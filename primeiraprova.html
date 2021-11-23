@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ex001</title>
+</head>
+<body>
+    <style>
+        body {
+            background-image: linear-gradient(rgb(255, 230, 0), rgb(175, 116, 6));
+            
+            background-repeat: no-repeat;
+            background-position: top center;
+            background-size: cover;
+            background-attachment: fixed;
+        }
+        main {
+            background-color: white;
+            border-radius: 10px;
+            margin-left: 300px;
+            margin-right: 300px;
+            padding: 7px;
+
+            text-align: center;
+            font-size: 30px;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        }
+        #pedro {
+            font-size: 30px;
+            border-radius: 10px;
+        }
+    </style>
+    <main>
+        <h1>Financiamento do carro</h1>
+        <form action="salvar.php" method="get" onsubmit="return fun()">
+
+            <label for="modelo">Qual é o modelo do seu automóvel?</label>
+            
+            <input type="text" name="modelo" id="modelo" size="12"> <br><br>
+
+            <label for="valor">Qual o valor?</label>
+            
+            <input type="number" name= "valor" id= "valor" min="1" max="100000000"> <br><br>
+
+            <label for="par">Vai desejar quantas parcelas?</label>
+            
+            <input type="number" name= "par" id="par" min="1" max="36" value="2"> <br><br>
+
+            <input type="submit" value="calcular" id="pedro">
+
+            <p id="resultado">O resultado vai aparecer aqui</p>
+        
+        </form>
+    </main>
+    <script>
+        let resultado = document.getElementById("resultado")
+        function fun() {
+            let modelo = document.getElementById("modelo").value
+            let valor = Number(document.getElementById("valor").value)
+            let par = Number(document.getElementById ("par").value)
+
+            if (par > 24) {
+                let vp = valor * 80 / 100
+                resultado.innerHTML = `O preço total do seu ${modelo} com 80% de juros é ${valor + vp}<br>Cada parcela vai ficar ${(valor + vp) / par}`
+            } else if (par > 12) {
+                let vp = valor * 60 / 100
+                resultado.innerHTML = `O preço total do seu ${modelo} com 60% de juros é ${valor + vp}<br>Cada parcela vai ficar ${(valor + vp) / par}`
+            } else if (par > 4) {
+                let vp = valor * 25 / 100
+                resultado.innerHTML = `O preço total do seu ${modelo} com 25% de juros é ${valor + vp}<br>Cada parcela vai ficar ${(valor + vp) / par}`
+            } else {
+                resultado.innerHTML = `O preço total do seu ${modelo} com 0% de juros é ${valor}<br>Cada parcela vai ficar ${valor / par}`
+            }
+            return false
+        }
+    </script>
+
+    
+
+</body>
+</html>
