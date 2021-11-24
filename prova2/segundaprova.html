@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Avaliação 2 3tapa</title>
+</head>
+<body>
+    <style>
+        body {
+            background-image: linear-gradient(rgb(0, 255, 179), rgb(4, 73, 129));
+            
+            background-repeat: no-repeat;
+            background-position: top center;
+            background-size: cover;
+            background-attachment: fixed;
+        }
+        main {
+            background-color: white;
+            border-radius: 10px;
+            margin-left: 300px;
+            margin-right: 300px;
+            padding: 7px;
+
+            text-align: center;
+            font-size: 30px;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        }
+        #butão {
+            font-size: 30px;
+            border-radius: 10px;
+        }
+        #qua {
+            font-size: 20px;
+        }
+    </style>
+    <main>
+        <h1>Processamento salarial</h1>
+        <form action="salvar.php" method="ger" onsubmit="return cal()">
+            <label for="qua">Quantos funcionários vão ser cadastrados na sua empresa?</label><br><br>
+            
+            <input type="number" name="qua" id="qua" min="1" max="1000000"><br><br>
+            
+            <input type="submit" value="Calcule!" id="butão">
+           
+            <p id="res">O resultado aparecerá aqui</p>
+        </form>
+    </main>
+    <script>
+        let res = document.getElementById("res")
+        
+        function cal() {
+            let qua = Number(document.getElementById("qua").value)
+            
+            let sal = 0
+            
+            let tot = 0
+            
+            let con = 0
+            
+            let med = 0
+            
+            let mai = 0
+            
+            let men = 0
+            
+            while (con < qua) {
+                sal = Number(prompt(`Escreva o salário do ${con + 1}º funcionário`))
+                
+                tot += sal
+                med = tot / qua
+                
+                if (con == 0) {
+                    mai = sal
+                    men = sal
+                
+                } 
+                
+                if (sal > mai) {
+                    mai = sal
+                
+                }
+                
+                if (sal < men) {
+                    men = sal
+                
+                }
+                con++
+            }
+            
+            res.innerHTML = `Gasto total(mês): R$${tot.toFixed(2)}<br><br>Média salárial: R$${med.toFixed(2)}<br><br>Maior salário pago: R$${mai.toFixed(2)}<br><br>Menor salário pago: R$${men.toFixed(2)}<br><br>Obrigado, volte sempre! &#x1F60A`
+        
+            return false
+        }
+    </script>
+</body>
+</html>
